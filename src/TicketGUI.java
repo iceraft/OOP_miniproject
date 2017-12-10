@@ -10,16 +10,15 @@ import javax.swing.DefaultComboBoxModel;
  */
 public class TicketGUI extends javax.swing.JFrame {
     Passenger pass = new Passenger();
-    Ticket tcat = new Ticket(pass);
-    Station Stat1 = new Station();
-    Station Stat2 = new Station();
+    Station stat1 = new Station();
+    Station stat2 = new Station();
     /**
      * Creates new form TicketGUI
      */
     public TicketGUI() {
         initComponents();
-        DefaultComboBoxModel dm = new DefaultComboBoxModel(Stat1.getLocation());
-        DefaultComboBoxModel dm1 = new DefaultComboBoxModel(Stat2.getLocation());
+        DefaultComboBoxModel dm = new DefaultComboBoxModel(stat1.getLocation());
+        DefaultComboBoxModel dm1 = new DefaultComboBoxModel(stat2.getLocation());
         jcbArrive.setModel(dm);
         jcbDepature.setModel(dm1);
     }
@@ -34,6 +33,15 @@ public class TicketGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jTextField5 = new javax.swing.JTextField();
+        jSpinner1 = new javax.swing.JSpinner();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
+        jTextField6 = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jcbDepature = new javax.swing.JComboBox<>();
         jcbArrive = new javax.swing.JComboBox<>();
@@ -41,19 +49,41 @@ public class TicketGUI extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jlDepature = new javax.swing.JLabel();
         jlArrive = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 296, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 151, Short.MAX_VALUE)
-        );
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Passenger Info"));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel3.setText("Name");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 35, -1, -1));
+
+        jLabel4.setText("IC Number");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 66, -1, -1));
+
+        jLabel5.setText("Age");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 94, -1, -1));
+
+        jLabel6.setText("Phone Number");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 119, -1, -1));
+        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(182, 120, 120, -1));
+
+        jSpinner1.setModel(new javax.swing.SpinnerListModel(new String[] {"010", "011", "012", "013", "014", "016", "017", "018", "019", "0111"}));
+        jPanel1.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 121, -1, -1));
+        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 63, 327, -1));
+        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 32, 327, -1));
+        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 94, 327, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 57, 464, 165));
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Ticket Info")));
 
         jcbDepature.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jcbDepature.addActionListener(new java.awt.event.ActionListener() {
@@ -88,7 +118,7 @@ public class TicketGUI extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jcbArrive, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 177, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jlDepature, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jlArrive, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -108,48 +138,76 @@ public class TicketGUI extends javax.swing.JFrame {
                         .addComponent(jcbArrive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel2))
                     .addComponent(jlArrive))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         jlDepature.getAccessibleContext().setAccessibleName("jLabel3");
         jlDepature.getAccessibleContext().setAccessibleDescription("");
         jlArrive.getAccessibleContext().setAccessibleName("jLabel4");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 156, Short.MAX_VALUE))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 228, 510, 140));
+
+        jButton1.setText("Back");
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 399, -1, -1));
+
+        jButton2.setText("Submit");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 400, -1, -1));
+
+        jButton3.setText("Clear");
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 400, -1, -1));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 32, Short.MAX_VALUE)
         );
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel7.setText("Passenger ticket form");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 210, 30));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/bg.jpg"))); // NOI18N
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 0, 50, 480));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jcbDepatureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbDepatureActionPerformed
-        Stat1.setStation((String)jcbDepature.getSelectedItem());
-        jlDepature.setText(Stat1.getlName());
+        stat1.setStation((String)jcbDepature.getSelectedItem());
+        jlDepature.setText(stat1.getlName());
     }//GEN-LAST:event_jcbDepatureActionPerformed
 
     private void jcbArriveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbArriveActionPerformed
-        Stat2.setStation((String)jcbArrive.getSelectedItem());
-        jlArrive.setText(Stat2.getlName());
+        stat1.setStation((String)jcbDepature.getSelectedItem());
+        stat2.setStation((String)jcbArrive.getSelectedItem());
+        if (stat1.getlName() == stat2.getlName()){
+            jlArrive.setText("Cannot go to the same location");
+            jButton2.setEnabled(false);
+        }else if(stat1.getlName().equals("Location ERROR")){
+            jlArrive.setText("Please choose destination");
+            jButton2.setEnabled(false);
+        }
+        else{
+            jlArrive.setText(stat2.getlName());
+            jButton2.setEnabled(true);}
     }//GEN-LAST:event_jcbArriveActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        RecieptGUI rec = new RecieptGUI(pass, stat1,stat2);
+        rec.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -187,10 +245,25 @@ public class TicketGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
     private javax.swing.JComboBox<String> jcbArrive;
     private javax.swing.JComboBox<String> jcbDepature;
     private javax.swing.JLabel jlArrive;

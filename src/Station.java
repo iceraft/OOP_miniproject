@@ -56,7 +56,7 @@ public class Station extends Location{
             case "LSBT"  :
                 this.lName = "Larkin Bus Station";
                 place = LSBT;
-                break;   
+                break; 
             default:
                 this.lName = "Location ERROR";
                 place = 0;
