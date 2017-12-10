@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import java.util.*;
 /**
  *
  * @author Fyukie
@@ -21,6 +23,7 @@ public class TicketGUI extends javax.swing.JFrame {
         DefaultComboBoxModel dm1 = new DefaultComboBoxModel(stat2.getLocation());
         jcbArrive.setModel(dm);
         jcbDepature.setModel(dm1);
+        jSubmit.setEnabled(false);
     }
 
     /**
@@ -37,11 +40,11 @@ public class TicketGUI extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jSpinner1 = new javax.swing.JSpinner();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        jtbPhone = new javax.swing.JTextField();
+        jsPhone = new javax.swing.JSpinner();
+        jtbICNO = new javax.swing.JTextField();
+        jtbName = new javax.swing.JTextField();
+        jtbAge = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jcbDepature = new javax.swing.JComboBox<>();
         jcbArrive = new javax.swing.JComboBox<>();
@@ -49,8 +52,7 @@ public class TicketGUI extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jlDepature = new javax.swing.JLabel();
         jlArrive = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jSubmit = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -73,13 +75,13 @@ public class TicketGUI extends javax.swing.JFrame {
 
         jLabel6.setText("Phone Number");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 119, -1, -1));
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(182, 120, 120, -1));
+        jPanel1.add(jtbPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(182, 120, 120, -1));
 
-        jSpinner1.setModel(new javax.swing.SpinnerListModel(new String[] {"010", "011", "012", "013", "014", "016", "017", "018", "019", "0111"}));
-        jPanel1.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 121, -1, -1));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 63, 327, -1));
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 32, 327, -1));
-        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 94, 327, -1));
+        jsPhone.setModel(new javax.swing.SpinnerListModel(new String[] {"010", "011", "012", "013", "014", "016", "017", "018", "019", "0111"}));
+        jPanel1.add(jsPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 121, -1, -1));
+        jPanel1.add(jtbICNO, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 63, 327, -1));
+        jPanel1.add(jtbName, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 32, 327, -1));
+        jPanel1.add(jtbAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 94, 327, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 57, 464, 165));
 
@@ -147,18 +149,20 @@ public class TicketGUI extends javax.swing.JFrame {
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 228, 510, 140));
 
-        jButton1.setText("Back");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 399, -1, -1));
-
-        jButton2.setText("Submit");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jSubmit.setText("Submit");
+        jSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jSubmitActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 400, -1, -1));
+        getContentPane().add(jSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 400, -1, -1));
 
         jButton3.setText("Clear");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 400, -1, -1));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -186,28 +190,93 @@ public class TicketGUI extends javax.swing.JFrame {
 
     private void jcbDepatureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbDepatureActionPerformed
         stat1.setStation((String)jcbDepature.getSelectedItem());
-        jlDepature.setText(stat1.getlName());
+        stat2.setStation((String)jcbArrive.getSelectedItem());
+        if (stat1.getlName().equals(stat2.getlName())){
+            jlDepature.setText("Please change here");
+            JOptionPane.showMessageDialog(null,"Cannot go to the same location");
+            jSubmit.setEnabled(false);
+        }else if(stat1.getlName().equals("Location ERROR")){
+            jSubmit.setEnabled(false);
+            jlDepature.setText("Please change here");
+            JOptionPane.showMessageDialog(null,"There must be a root location");
+        }
+        else{
+            jlArrive.setText(stat2.getlName());
+            jlDepature.setText(stat1.getlName());
+            jSubmit.setEnabled(true);}
+        
     }//GEN-LAST:event_jcbDepatureActionPerformed
 
     private void jcbArriveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbArriveActionPerformed
         stat1.setStation((String)jcbDepature.getSelectedItem());
         stat2.setStation((String)jcbArrive.getSelectedItem());
-        if (stat1.getlName() == stat2.getlName()){
-            jlArrive.setText("Cannot go to the same location");
-            jButton2.setEnabled(false);
+        if (stat1.getlName().equals(stat2.getlName())){
+            jlArrive.setText("Please change here");
+            JOptionPane.showMessageDialog(null,"Cannot go to the same location");
+            jSubmit.setEnabled(false);
         }else if(stat1.getlName().equals("Location ERROR")){
-            jlArrive.setText("Please choose destination");
-            jButton2.setEnabled(false);
+            jlDepature.setText("Please change here");
+            jSubmit.setEnabled(false);
+            JOptionPane.showMessageDialog(null,"There must be a root location");
+        }else if(stat2.getlName().equals("Location ERROR")){
+            jlDepature.setText("Please change here");
+            jSubmit.setEnabled(false);
+            JOptionPane.showMessageDialog(null,"There must be a destination location");
         }
         else{
+            jlDepature.setText(stat1.getlName());
             jlArrive.setText(stat2.getlName());
-            jButton2.setEnabled(true);}
+            jSubmit.setEnabled(true);}
     }//GEN-LAST:event_jcbArriveActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        RecieptGUI rec = new RecieptGUI(pass, stat1,stat2);
-        rec.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void jSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSubmitActionPerformed
+        
+        if (jtbName.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"Please enter field Name");
+        }else{
+            pass.setName(jtbName.getText());
+        }
+        if (jtbICNO.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"Please enter field IC number");
+        }else{
+            pass.setIC(jtbICNO.getText());
+        }
+        if (jtbPhone.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"Please enter field phone");
+        }else{
+            pass.setPhone(jsPhone.getValue()+"-"+jtbPhone.getText());
+        }
+        if (jtbAge.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"Please enter field age");
+        }else{
+        try{
+            pass.setAge(Integer.parseInt(jtbAge.getText()));
+        }catch(NumberFormatException nfe){
+            JOptionPane.showMessageDialog(null,"Please enter a number in age");
+        }}
+        if (jtbName.getText().equals("")||jtbICNO.getText().equals("")||jtbPhone.getText().equals("")||jtbAge.getText().equals("")){
+            //do nothing
+        }else{
+            RecieptGUI rec = new RecieptGUI(pass, stat1,stat2);
+            rec.setVisible(true);
+        }
+    }//GEN-LAST:event_jSubmitActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+
+        if (JOptionPane.showConfirmDialog(null, "This will clear the whole form, confirm?", "WARNING",JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            jtbName.setText("");
+            jtbICNO.setText("");
+            jtbAge.setText("");
+            jtbPhone.setText("");
+            jcbDepature.setSelectedIndex(0);
+            jcbArrive.setSelectedIndex(0);
+            jlDepature.setText("");
+            jlArrive.setText("");
+            //  clearScreen();
+        }
+            
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -245,8 +314,6 @@ public class TicketGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -259,14 +326,15 @@ public class TicketGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JButton jSubmit;
     private javax.swing.JComboBox<String> jcbArrive;
     private javax.swing.JComboBox<String> jcbDepature;
     private javax.swing.JLabel jlArrive;
     private javax.swing.JLabel jlDepature;
+    private javax.swing.JSpinner jsPhone;
+    private javax.swing.JTextField jtbAge;
+    private javax.swing.JTextField jtbICNO;
+    private javax.swing.JTextField jtbName;
+    private javax.swing.JTextField jtbPhone;
     // End of variables declaration//GEN-END:variables
 }

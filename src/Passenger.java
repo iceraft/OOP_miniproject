@@ -9,8 +9,8 @@
  * @author Fyukie
  */
 public class Passenger {
-    private String pName,pic;
-    private int pPhone,pAge;
+    private String pName,pic,pPhone;
+    private int pAge;
     
     public Passenger(){
         //public constructor
@@ -21,7 +21,7 @@ public class Passenger {
         this.pic = pic;
     }
         
-    public Passenger(String pName,String pic,int pPhone,int pAge){
+    public Passenger(String pName,String pic,String pPhone,int pAge){
         this.pName = pName;
         this.pic = pic;
         this.pPhone = pPhone;
@@ -40,10 +40,10 @@ public class Passenger {
     public String getIC(){
         return this.pic;
     }
-    public void setPhone(int pPhone){
+    public void setPhone(String pPhone){
         this.pPhone = pPhone;
     }
-    public int getPhone(){
+    public String getPhone(){
         return this.pPhone;
     }
     public void setAge(int pAge){
